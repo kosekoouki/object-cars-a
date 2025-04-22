@@ -15,10 +15,10 @@ class Car{
     function calculateDistance(){
         $result = rand(1,100);
         if($result >= $this->brakeRate){
-            $_SESSION[$this->name]['speed'] += $this->acceleration;               //加速する
+            $_SESSION[$this->name]['speed'] += $_SESSION[$this->name]['acceleration'];               //加速する
         }
         else{
-            $_SESSION[$this->name]['speed'] += $this->deceleration;               //減速する
+            $_SESSION[$this->name]['speed'] += $_SESSION[$this->name]['deceleration'];               //減速する
         }
         $_SESSION[$this->name]['distance'] += $_SESSION[$this->name]['speed'];  //進む
         if($_SESSION[$this->name]['distance'] >= $_SESSION['check_point']){
