@@ -43,8 +43,8 @@ function showCarInfo($car) {
     echo "車種：{$car->name}<br>";
     echo "値段：{$car->price}万円<br>";
     echo "定員：{$car->capacity}人<br>";
-    echo "アクセル：{$car->acceleration}m/s²<br>";
-    echo "ブレーキ：{$car->deceleration}m/s²<br>";
+    echo "アクセルを踏んだ時の加速：{$car->acceleration}m/s²<br>";
+    echo "ブレーキを踏んだ時の減速：{$car->deceleration}m/s²<br>";
     echo "<hr>"; // 区切り線
 }
 
