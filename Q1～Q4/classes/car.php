@@ -1,16 +1,18 @@
 <?php
 class Car{
     public $price;
+    public $priceRange;
     public $acceleration;
     public $deceleration;
     public $capacity;
+    function __construct($capacity){
+        $this->capacity = $capacity;
+    }
     function priceGen(){
-        $result = rand($this->price['min'],$this->price['max']);
-        return $result; 
+        $this->price = rand($this->priceRange['min'],$this->price['max']);
     }
     function adjustAcceleration(){
         $this->acceleration = $this->acceleration * (1-($this->capacity * 0.05));
-        return $this->acceleration;
     }
 }
 ?>
