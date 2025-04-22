@@ -30,6 +30,8 @@ if(isset($_POST['setting'])){
     if(isset($_POST['car'])){
         $_SESSION['game']['car'] = $_POST['car'];
         $_SESSION['game']['money'] -= $_SESSION[$_POST['car']]["price"];
+        //チェックポイントの設定
+        $_SESSION['game']['check_point'] += $checkPoint;
         header("Location: view/playing_view.php");
         exit;
     }
@@ -67,9 +69,8 @@ if(isset($_POST["start"]) and $_SESSION['game']['check_point'] < $goal){
         'ferrari' => $_SESSION['ferrari']['distance'],
         'toyota'  => $_SESSION['toyota']['distance'],
     ];
-    //チェックポイントの更新
+    //チェックポイントの設定
     $_SESSION['game']['check_point'] += $checkPoint;
-
     //ランキング決め
     arsort($distances);
     $_SESSION['ranking'] = array_keys($distances);
