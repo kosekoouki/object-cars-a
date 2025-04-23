@@ -7,8 +7,8 @@
 </head>
 <body>
     <h1> カーズ！</h1>
-    <form action="./controller.php" method="post">
-        <button type="submit" name="first"value = "ゲームスタート"></button>
+    <form action="../controller.php" method="post">
+        <button type="submit" name="first" >ゲームスタート</button>
     </form>
 </body>
 </html>

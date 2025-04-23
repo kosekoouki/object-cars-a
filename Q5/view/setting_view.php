@@ -1,4 +1,7 @@
-<<!DOCTYPE html>
+<?PHP
+require_once("../controller.php")
+?>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
@@ -11,8 +14,9 @@
     ラウンド数：<?= $_SESSION['game']['round']?> 回<br>
     勝利数：<?= $_SESSION['game']['win_count']?> 回<br>
     所持金：<?= $_SESSION['game']['money']?> 万円<br>
+    <?= $message?> <br>
 
-    <form action="car.php" mrthod="post">
+    <form action="../controller.php" method="post">
     <p>車種を選択してください：</p>
     <label>
         Honda：<?= $_SESSION['honda']['price']?> 万円
@@ -20,15 +24,15 @@
     </label><br>
     <label>
         Nissan：<?= $_SESSION['nissan']['price']?> 万円
-        <input type="radio" name="car" value="nissan"> Nissan
+        <input type="radio" name="car" value="nissan"> 
     </label><br>
     <label>
         Ferrari：<?= $_SESSION['ferrari']['price']?> 万円
-        <input type="radio" name="car" value="ferrari"> Ferrari
+        <input type="radio" name="car" value="ferrari"> 
     </label><br>
     <label>
          Toyota：<?= $_SESSION['toyota']['price']?> 万円
-        <input type="radio" name="car" value="toyota"> Toyota
+        <input type="radio" name="car" value="toyota"> 
     </label><br><br>
     <button type="submit" name="setting">スタート</button>
     </form>  
