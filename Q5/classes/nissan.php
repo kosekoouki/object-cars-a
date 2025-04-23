@@ -4,11 +4,13 @@ class Nissan extends Car {
     public $name = "nissan";
     public $priceRange = ["min" => 250, "max" => 300];
     public $brakeRate = 10;
+    public $maxSpead = 200;
 
     public function __construct(){
 
     $_SESSION[$this->name]['acceleration'] = 3; 
     $_SESSION[$this->name]['deceleration'] = 6; 
+    $_SESSION[$this->name]['speed'] = min($_SESSION[$this->name]['speed'], $this->maxSpead);
 
     }
 }    

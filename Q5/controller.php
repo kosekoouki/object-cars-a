@@ -29,18 +29,28 @@ if(isset($_POST["first"])  ){
     header("Location: view/setting_view.php");
     exit;
 }
-
+$_SESSION['honda']['distance'] = min($_SESSION['honda']['distance'], $goal);
+$_SESSION['ferrari']['distance'] = min($_SESSION['ferrari']['distance'], $goal);
+$_SESSION['nissan']['distance'] = min($_SESSION['nissan']['distance'], $goal);
+$_SESSION['toyota']['distance'] = min($_SESSION['toyota']['distance'], $goal);
 //選択処理
 if(isset($_POST['setting'])){
     if(isset($_POST['car'])){
-        //選択した車種をセッションに保持
-        $_SESSION['game']['car'] = $_POST['car'];
-        //使用した金額を所持金から引く
-        $_SESSION['game']['money'] -= $_SESSION[$_POST['car']]["price"];
-        //チェックポイントの設定
-        $_SESSION['game']['check_point'] += $checkPoint;
-        header("Location: view/playing_view.php");
-        exit;
+        if($_SESSION['game']['money'] >= $_SESSION[$_POST['car']]["price"]){
+            //選択した車種をセッションに保持
+            $_SESSION['game']['car'] = $_POST['car'];
+            //使用した金額を所持金から引く
+            $_SESSION['game']['money'] -= $_SESSION[$_POST['car']]["price"];
+            //チェックポイントの設定
+            $_SESSION['game']['check_point'] += $checkPoint;
+            header("Location: view/playing_view.php");
+            exit;
+        }
+        else{
+            $_SESSION['message'] = "notpay";
+            header("Location: view/setting_view.php");
+            exit; 
+        }
     }
     else{
         $_SESSION['message'] = "notsellect";
@@ -99,13 +109,13 @@ if(isset($_POST["start"])){
 
 //画面遷移処理
 if(isset($_POST['next'])){
-    if($_SESSION['game']['check_point'] > $goal){
+    if($_SESSION['game']['check_point'] > $goal ){
         //勝利数の加算
         if ($_SESSION['ranking'][0] == $_SESSION['game']['car']) {
             $_SESSION['game']['win_count']++;
         }       
         sessionReset();
-        if($_SESSION['game']['round'] < $maxround){
+        if($_SESSION['game']['round'] < $maxround && $_SESSION['game']['win_count'] < 2){
             //ラウンドの加算
             $_SESSION['game']['round']++;
             //所持金の加算
@@ -145,6 +155,9 @@ switch ($_SESSION['message']) {
         break;
     case "notsellect":
         $message = "車種を選択してください。";
+        break;
+    case "notpay":
+        $message = "お金が足りません";
         break;
     case "goal":
         $message = "ゴール！";
