@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 <?php
 require_once('../controller.php')?>
+=======
+>>>>>>> ccda2f54c5c52ca2f16d96e329793a87badc13a6
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,9 +44,15 @@ require_once('../controller.php')?>
     </table>
     
 
+<<<<<<< HEAD
     <form action="../controller.php" method="post">
         <input type="submit" name="start" value="スタート"><br>
         <input type="submit" name="next" value=<?= $_SESSION['game']['finish'] ? "結果画面" : "次のラウンド"  ?>>
+=======
+    <form action="./controller.php" method="post">
+        <input type="submit" name="start" value="スタート"><br>
+        <input type="submit" name="next" value=<?= $_SESSION['game']['finish'] ? "次のラウンド" : "結果画面" ?>>
+>>>>>>> ccda2f54c5c52ca2f16d96e329793a87badc13a6
     </form>
 </body>
 </html>
