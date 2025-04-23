@@ -15,14 +15,31 @@ class Car{
 
     //加速・減速・移動処理
     function calculateDistance(){
-        $result = rand(1,100);
-        if($result >= $this->brakeRate){
+        $brakeRate = rand(1,200);
+        $rate = rand(1,1000);
+        if($brakeRate >= $this->brakeRate){
             $_SESSION[$this->name]['speed'] += $_SESSION[$this->name]['acceleration'];               //加速する
         }
         else{
-            $_SESSION[$this->name]['speed'] += $_SESSION[$this->name]['deceleration'];               //減速する
+            $_SESSION[$this->name]['speed'] -= $_SESSION[$this->name]['deceleration'];               //減速する
         }
-        $_SESSION[$this->name]['distance'] += $_SESSION[$this->name]['speed'];  //進む
+        if($_SESSION[$this->name]['speed']<=100){
+            $accidentRate = 5;
+        }
+        elseif($_SESSION[$this->name]['speed']<=150){
+            $accidentRate = 20;
+        }
+        elseif($_SESSION[$this->name]['speed']<=200){
+            $accidentRate = 50;
+        }
+        elseif($_SESSION[$this->name]['speed']<=300){
+            $accidentRate = 100;
+        }
+        if($rate <= $accidentRate) {
+            $_SESSION[$this->name]['speed'] = 0;
+            $_SESSION[$this->name]['accident_count'] ++;
+        }
+        $_SESSION[$this->name]['distance'] += $_SESSION[$this->name]['speed'];                         //進む
         if($_SESSION[$this->name]['distance'] >= $_SESSION['game']['check_point']){
             return true;
         }
