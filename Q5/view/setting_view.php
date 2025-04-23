@@ -14,6 +14,7 @@ require_once("../controller.php")
     ラウンド数：<?= $_SESSION['game']['round']?> 回<br>
     勝利数：<?= $_SESSION['game']['win_count']?> 回<br>
     所持金：<?= $_SESSION['game']['money']?> 万円<br>
+    <?= $message?> <br>
 
     <form action="../controller.php" method="post">
     <p>車種を選択してください：</p>

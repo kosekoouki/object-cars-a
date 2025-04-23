@@ -8,6 +8,7 @@ require_once('../controller.php')?>
     <title>Document</title>
 </head>
 <body>
+    <?= $message?> <br>
     <?php $rank = ['1位', '2位', '3位', '4位'];
     foreach ($_SESSION['ranking'] as $i => $car) {
     echo $rank[$i] . "：" . $car . "<br>";}?><br>

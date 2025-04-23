@@ -1,6 +1,5 @@
 <?php
 session_start();
-$_SESSION['message']="";
 require_once("session_init.php");
 require_once("classes/honda.php");
 require_once("classes/nissan.php");
@@ -44,7 +43,7 @@ if(isset($_POST['setting'])){
         exit;
     }
     else{
-        $_SESSION['message'] = "notSellect";
+        $_SESSION['message'] = "notsellect";
         header("Location: view/setting_view.php");
         exit; 
     }
@@ -83,12 +82,16 @@ if(isset($_POST["start"])){
         //ランキング決め
         arsort($distances);
         $_SESSION['ranking'] = array_keys($distances);
+
+        if($_SESSION['game']['check_point'] > $goal){
+        $_SESSION['message'] = "goal"; 
+        }
         header("Location: view/playing_view.php");
         exit;
     }
     else{
         header("Location: view/playing_view.php");
-        $_SESSION['message'] = "notStart";
+        $_SESSION['message'] = "notstart";
         exit;
     }
 }
@@ -135,4 +138,23 @@ if(isset($_POST['finish'])){
     header("Location: view/start_view.php");
     exit;
 }
+
+switch ($_SESSION['message']) {
+    case "":
+        $message = "";
+        break;
+    case "notsellect":
+        $message = "車種を選択してください。";
+        break;
+    case "goal":
+        $message = "ゴール！";
+        break;
+    case "notstart":
+        $message = "すでにゴールしました。";
+        break;
+    case "notnext":
+        $message = "ラウンドが終わってません";
+        break;
+}
+$_SESSION['message']="";
 ?>
