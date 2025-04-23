@@ -14,6 +14,11 @@ $checkPoint = 1000;
 $goal = 5000;
 $firstMoney = 3000;
 $addMoney = 1000;
+$_SESSION['honda']['distance'] = min($_SESSION['honda']['distance'], $goal);
+$_SESSION['ferrari']['distance'] = min($_SESSION['ferrari']['distance'], $goal);
+$_SESSION['nissan']['distance'] = min($_SESSION['nissan']['distance'], $goal);
+$_SESSION['toyota']['distance'] = min($_SESSION['toyota']['distance'], $goal);
+
 //設定処理
 if(isset($_POST["first"])  ){
     setting();
@@ -29,10 +34,7 @@ if(isset($_POST["first"])  ){
     header("Location: view/setting_view.php");
     exit;
 }
-$_SESSION['honda']['distance'] = min($_SESSION['honda']['distance'], $goal);
-$_SESSION['ferrari']['distance'] = min($_SESSION['ferrari']['distance'], $goal);
-$_SESSION['nissan']['distance'] = min($_SESSION['nissan']['distance'], $goal);
-$_SESSION['toyota']['distance'] = min($_SESSION['toyota']['distance'], $goal);
+
 //選択処理
 if(isset($_POST['setting'])){
     if(isset($_POST['car'])){
@@ -149,6 +151,7 @@ if(isset($_POST['finish'])){
     exit;
 }
 
+//メッセージ管理
 switch ($_SESSION['message']) {
     case "":
         $message = "";
