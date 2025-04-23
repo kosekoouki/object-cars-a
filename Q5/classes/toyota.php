@@ -4,6 +4,11 @@ class Toyota extends Car {
     public $name = "Toyota";
     public $priceRange = ["min" => 200, "max" => 2000];
 
+    public function __construct(){
+        $_SESSION[$this->name]['acceleration'] = 0; 
+        $_SESSION[$this->name]['deceleration'] = 0;     
+    }
+
     public function adjustAcceleration(){
         $price = $_SESSION[$this->name]['price'];
 
