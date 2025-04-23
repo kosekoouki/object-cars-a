@@ -8,6 +8,7 @@ require_once('../controller.php')?>
     <title>Document</title>
 </head>
 <body>
+    <?= $_SESSION['game']['car']?> <br>
     <?= $message?> <br>
     <?php $rank = ['1位', '2位', '3位', '4位'];
     foreach ($_SESSION['ranking'] as $i => $car) {
@@ -18,26 +19,31 @@ require_once('../controller.php')?>
       <td>車種</td>
       <td>スピード</td>
       <td>距離</td>
+      <td>事故回数</td>
     </tr>
     <tr>
       <td>Honda</td>
       <td> <?= $_SESSION['honda']['speed']?></td>
       <td><?= $_SESSION['honda']['distance']?></td>
+      <td><?= $_SESSION['honda']['accident_count']?></td>
     </tr>
     <tr>
       <td>Nissan</td>
       <td> <?= $_SESSION['nissan']['speed']?></td>
       <td><?= $_SESSION['nissan']['distance']?></td>
+      <td><?= $_SESSION['nissan']['accident_count']?></td>
     </tr>
     <tr>
       <td>Ferrari</td>
       <td> <?= $_SESSION['ferrari']['speed']?></td>
       <td><?= $_SESSION['ferrari']['distance']?></td>
+      <td><?= $_SESSION['ferrari']['accident_count']?></td>
     </tr>
     <tr>
       <td>Toyota</td>
       <td> <?= $_SESSION['toyota']['speed']?></td>
       <td><?= $_SESSION['toyota']['distance']?></td>
+      <td><?= $_SESSION['toyota']['accident_count']?></td>
     </tr>
     </table>
     
