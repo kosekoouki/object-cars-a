@@ -1,8 +1,9 @@
 <?php
 require_once("car.php");
 class Nissan extends Car {
-    public $name = "Nissan";
+    public $name = "nissan";
     public $priceRange = ["min" => 250, "max" => 300];
+    public $brakeRate = 10;
 
     public function __construct(){
 
