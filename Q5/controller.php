@@ -1,4 +1,7 @@
 <?php
+session_start();
+$_SESSION['message']="";
+require_once("session_init.php");
 require_once("classes/honda.php");
 require_once("classes/nissan.php");
 require_once("classes/ferrari.php");
@@ -10,10 +13,12 @@ $toyota = new Toyota();
 $maxround = 5;
 $checkPoint = 1000;
 $goal = 5000;
-
+$firstMoney = 3000;
+$addMoney = 1000;
 //設定処理
 if(isset($_POST["first"])  ){
-    require_once("session_init.php");
+    setting();
+    $_SESSION['game']['money']=$firstMoney;
     // Honda
     $honda->priceGen();
     // Nissan
@@ -22,13 +27,16 @@ if(isset($_POST["first"])  ){
     $ferrari->priceGen();
     // Toyota
     $toyota->priceGen();
-    $toyota->adjustAcceleration();
+    header("Location: view/setting_view.php");
+    exit;
 }
 
 //選択処理
 if(isset($_POST['setting'])){
     if(isset($_POST['car'])){
+        //選択した車種をセッションに保持
         $_SESSION['game']['car'] = $_POST['car'];
+        //使用した金額を所持金から引く
         $_SESSION['game']['money'] -= $_SESSION[$_POST['car']]["price"];
         //チェックポイントの設定
         $_SESSION['game']['check_point'] += $checkPoint;
@@ -43,69 +51,81 @@ if(isset($_POST['setting'])){
 }
 
 //ゲーム処理
-if(isset($_POST["start"]) and $_SESSION['game']['check_point'] < $goal){
-    $check1 = false;
-    $check2 = false;
-    $check3 = false;
-    $check4 = false;
-    for($t=$_SESSION['game']['time'];$t<10000000;$t++){
-        $check1 = $honda->calculateDistance();
-        $check2 = $nissan->calculateDistance();
-        $check3 = $ferrari->calculateDistance();
-        $check4 = $toyota->calculateDistance();
-        if($check1||$check2||$check3||$check4){
-            break;
+if(isset($_POST["start"])){
+    if($_SESSION['game']['check_point'] <= $goal){
+        $check1 = false;
+        $check2 = false;
+        $check3 = false;
+        $check4 = false;
+        for($_SESSION['game']['time'];$t<10000000;$_SESSION['game']['time']++){
+            $check1 = $honda->calculateDistance();
+            $check2 = $nissan->calculateDistance();
+            $check3 = $ferrari->calculateDistance();
+            $check4 = $toyota->calculateDistance();
+            if($check1||$check2||$check3||$check4){
+                break;
+            }
         }
-    }
-    $distance = [
-        $_SESSION['honda']['distance']
-        ,$_SESSION['nissan']['distance']
-        ,$_SESSION['ferrari']['distance']
-        ,$_SESSION['toyota']['distance']
-    ];
-    $distances = [
-        'honda'   => $_SESSION['honda']['distance'],
-        'nissan'  => $_SESSION['nissan']['distance'],
-        'ferrari' => $_SESSION['ferrari']['distance'],
-        'toyota'  => $_SESSION['toyota']['distance'],
-    ];
-    //チェックポイントの設定
-    $_SESSION['game']['check_point'] += $checkPoint;
-    //ランキング決め
-    arsort($distances);
-    $_SESSION['ranking'] = array_keys($distances);
-    
-    if ($_SESSION['ranking'][0] == $_SESSION['game']['car']) {
-        $_SESSION['game']['win_count']++;
-    }
-    $_SESSION['game']['round']++;
-    header("Location: view/playing_view.php");
-    exit;
-}
-else{
-    $_SESSION["message"] = "notstart";
-    header("Location: view/playing_view.php");
-    exit;
-}
-
-//画面遷移処理
-if(isset($_POST['next'])){
-    if($_SESSION['game']['round'] <= $maxround){
-        require_once("session_init.php");
-        // Honda
-        $honda->priceGen();
-        // Nissan
-        $nissan->priceGen();
-        // Ferrari
-        $ferrari->priceGen();
-        // Toyota
-        $toyota->priceGen();
-        $toyota->adjustAcceleration();
-        header("Location: view/setting_view.php");
+        $distance = [
+            $_SESSION['honda']['distance']
+            ,$_SESSION['nissan']['distance']
+            ,$_SESSION['ferrari']['distance']
+            ,$_SESSION['toyota']['distance']
+        ];
+        $distances = [
+            'honda'   => $_SESSION['honda']['distance'],
+            'nissan'  => $_SESSION['nissan']['distance'],
+            'ferrari' => $_SESSION['ferrari']['distance'],
+            'toyota'  => $_SESSION['toyota']['distance'],
+        ];
+        //チェックポイントの設定
+        $_SESSION['game']['check_point'] += $checkPoint;
+        //ランキング決め
+        arsort($distances);
+        $_SESSION['ranking'] = array_keys($distances);
+        header("Location: view/playing_view.php");
         exit;
     }
     else{
-        header("Location: view/result_view.php");
+        header("Location: view/playing_view.php");
+        $_SESSION['message'] = "notStart";
+        exit;
+    }
+}
+
+
+//画面遷移処理
+if(isset($_POST['next'])){
+    if($_SESSION['game']['check_point'] > $goal){
+        //勝利数の加算
+        if ($_SESSION['ranking'][0] == $_SESSION['game']['car']) {
+            $_SESSION['game']['win_count']++;
+        }       
+        sessionReset();
+        if($_SESSION['game']['round'] < $maxround){
+            //ラウンドの加算
+            $_SESSION['game']['round']++;
+            //所持金の加算
+            $_SESSION['game']['money'] += $addMoney;
+            // Honda
+            $honda->priceGen();
+            // Nissan
+            $nissan->priceGen();
+            // Ferrari
+            $ferrari->priceGen();
+            // Toyota
+            $toyota->priceGen();
+            header("Location: view/setting_view.php");
+            exit;
+        }
+        else{
+            header("Location: view/result_view.php");
+            exit;
+        }
+    }
+    else{
+        header("Location: view/playing_view.php");
+        $_SESSION['message'] = "notnext";
         exit;
     }
 }
