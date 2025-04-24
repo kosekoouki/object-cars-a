@@ -15,24 +15,24 @@ $allPrice = [];
 
 
 for($i=0;$i<$ferrariCount;$i++){
-$ferrari = new Ferrari();
-$ferrari->priceGen();
-$ferrariPrice [] = $ferrari->price;
-$allPrice[] = $ferrari->price;
+    $ferrari = new Ferrari();
+    $ferrari->priceGen();
+    $ferrariPrice [] = $ferrari->price;
+    $allPrice[] = $ferrari->price;
 }
 
 for($i=0;$i<$hondaCount;$i++){
-$honda = new Honda();        
-$honda -> priceGen();
-$hondaPrice [] = $honda->price;
-$allPrice[] = $honda->price;
+    $honda = new Honda();        
+    $honda -> priceGen();
+    $hondaPrice [] = $honda->price;
+    $allPrice[] = $honda->price;
 }
 
 for($i=0;$i<$nissanCount;$i++){
-$nissan = new Nissan();
-$nissan -> priceGen();
-$nissanPrice [] = $nissan->price;
-$allPrice[] = $nissan->price;
+    $nissan = new Nissan();
+    $nissan -> priceGen();
+    $nissanPrice [] = $nissan->price;
+    $allPrice[] = $nissan->price;
 }
 
 function calcTotalAndAverage($price){
@@ -41,6 +41,7 @@ function calcTotalAndAverage($price){
     return ['sum'=>$sum, 'avg'=>$avg];
 }
 
+$count = count($allPrice);
 $allResult = calcTotalAndAverage($allPrice);
 
-echo "全車種 合計金額: {$allResult['sum']}万円、平均金額: {$allResult['avg']}万円<br>";
+echo "全車種 合計生成台数: {$count}台、合計金額: {$allResult['sum']}万円、平均金額: {$allResult['avg']}万円<br>";
