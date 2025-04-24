@@ -5,6 +5,7 @@ class Car{
     public $acceleration;
     public $deceleration;
     public $brakeRate;
+    public $maxSpead;
 
     //値段の出力
     function priceGen(){
@@ -15,6 +16,7 @@ class Car{
 
     //加速・減速・移動処理
     function calculateDistance(){
+        $goal = $_SESSION['goal'];
         $accidentRate = 0;
         $brakeRate = rand(1,200);
         $rate = rand(1,1000);
@@ -24,6 +26,7 @@ class Car{
         else{
             $_SESSION[$this->name]['speed'] -= $_SESSION[$this->name]['deceleration'];               //減速する
         }
+        $_SESSION[$this->name]['speed'] = min($_SESSION[$this->name]['speed'], $this->maxSpead);
         if($_SESSION[$this->name]['speed']<=28){
             $accidentRate = 5;
         }
@@ -41,8 +44,9 @@ class Car{
             $_SESSION[$this->name]['accident_count'] ++;
         }
         $_SESSION[$this->name]['distance'] += $_SESSION[$this->name]['speed'];                         //進む
+        $_SESSION[$this->name]['distance'] = min($_SESSION[$this->name]['distance'], $goal);
         $_SESSION[$this->name]['position'] = $_SESSION[$this->name]['distance']*100/$_SESSION['goal']; //位置指定処理
-        if($_SESSION[$this->name]['distance'] >= $_SESSION['game']['check_point']){
+        if($_SESSION[$this->name]['distance'] >= $_SESSION['goal']){
             return true;
         }
         else{
