@@ -43,4 +43,4 @@ function calcTotalAndAverage($price){
 
 $allResult = calcTotalAndAverage($allPrice);
 
-echo "全車種 合計金額: {$allResult['sum']}、平均金額: {$allResult['avg']}<br>";
+echo "全車種 合計金額: {$allResult['sum']}万円、平均金額: {$allResult['avg']}万円<br>";
