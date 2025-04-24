@@ -68,7 +68,7 @@ if(isset($_POST["start"])){
         $check2 = false;
         $check3 = false;
         $check4 = false;
-        for($_SESSION['game']['time'];$t<10000000;$_SESSION['game']['time']++){
+        for($_SESSION['game']['time'];$_SESSION['game']['time']<10000000;$_SESSION['game']['time']++){
             $check1 = $honda->calculateDistance();
             $check2 = $nissan->calculateDistance();
             $check3 = $ferrari->calculateDistance();
