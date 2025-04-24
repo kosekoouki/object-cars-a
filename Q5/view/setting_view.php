@@ -32,7 +32,7 @@ require_once("../controller.php")
 
         .game-info .highlight {
             font-size: 24px;
-            color: #ff14d8; 
+            color: #ff1414; 
             font-weight: bold;
         }
 
@@ -50,6 +50,34 @@ require_once("../controller.php")
             color: white;
             border: none;
             border-radius: 5px;
+        }
+
+        .car-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .car-card{
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            text-align: center;
+            width: 140px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        
+        .car-img{
+            width: 100%;
+            height: auto;
+            max-height: 80px;
+            object-fit: contain;
+            margin-bottom: 5px;
         }
         </style>
         
@@ -71,23 +99,35 @@ require_once("../controller.php")
 </div>
 </table>
     <form action="../controller.php" method="post">
+        <div class="car-container">
 
-    <label>
+    <label class="car-card">
+        <img src="https://cdn.pixabay.com/photo/2016/11/23/08/13/honda-1852200_1280.jpg" alt="Honda" class="car-img">
         Honda：<?= $_SESSION['honda']['price']?> 万円
         <input type="radio" name="car" value="honda"> 
-    </label><br>
-    <label>
+    </label>
+
+    <label class="car-card">
+    <img src="https://cdn.pixabay.com/photo/2022/07/15/19/00/auto-7323835_1280.png" alt="nissan" class="car-img">
+        <br><br>
         Nissan：<?= $_SESSION['nissan']['price']?> 万円
         <input type="radio" name="car" value="nissan"> 
-    </label><br>
-    <label>
+    </label>
+    
+    <label class="car-card">
+    <img src="https://cdn.pixabay.com/photo/2017/02/01/11/20/drive-2029742_1280.png" alt="ferrari" class="car-img">
         Ferrari：<?= $_SESSION['ferrari']['price']?> 万円
         <input type="radio" name="car" value="ferrari"> 
-    </label><br>
-    <label>
+    </label>
+
+    <label class="car-card">
+    <img src="https://cdn.pixabay.com/photo/2017/06/15/04/13/car-2404064_1280.png" alt="toyota" class="car-img">
          Toyota：<?= $_SESSION['toyota']['price']?> 万円
         <input type="radio" name="car" value="toyota"> 
-    </label><br><br>
+    </label>
+
+    </div>
+    <br>
     <button type="submit" name="setting">スタート</button>
     </form>  
 </body>
