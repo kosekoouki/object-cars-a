@@ -66,17 +66,21 @@ require_once("../controller.php")
             border-radius: 5px;
             padding: 10px;
             text-align: center;
-            width: 140px;
-            cursor: pointer;
+            width: 180px;
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-sizing: border-box;
             transition: transform 0.2s;
         }
 
         
-        .car-img{
+        .car-img {
             width: 100%;
-            height: auto;
-            max-height: 80px;
+            height: 200px; 
             object-fit: contain;
+            object-position: center center;
             margin-bottom: 5px;
         }
         </style>
@@ -109,7 +113,6 @@ require_once("../controller.php")
 
     <label class="car-card">
     <img src="https://cdn.pixabay.com/photo/2022/07/15/19/00/auto-7323835_1280.png" alt="nissan" class="car-img">
-        <br><br>
         Nissan：<?= $_SESSION['nissan']['price']?> 万円
         <input type="radio" name="car" value="nissan"> 
     </label>
