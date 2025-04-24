@@ -41,6 +41,7 @@ class Car{
             $_SESSION[$this->name]['accident_count'] ++;
         }
         $_SESSION[$this->name]['distance'] += $_SESSION[$this->name]['speed'];                         //進む
+        $_SESSION[$this->name]['position'] = $_SESSION[$this->name]['distance']*100/$_SESSION['goal']; //位置指定処理
         if($_SESSION[$this->name]['distance'] >= $_SESSION['game']['check_point']){
             return true;
         }

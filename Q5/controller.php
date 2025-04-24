@@ -12,6 +12,7 @@ $toyota = new Toyota();
 $maxround = 5;
 $checkPoint = 1000;
 $goal = 5000;
+$_SESSION['goal'] = $goal;
 $firstMoney = 3000;
 $addMoney = 1000;
 $_SESSION['honda']['distance'] = min($_SESSION['honda']['distance'], $goal);
@@ -173,4 +174,8 @@ switch ($_SESSION['message']) {
         break;
 }
 $_SESSION['message']="";
+
+
+
+
 ?>
