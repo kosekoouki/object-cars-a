@@ -6,7 +6,7 @@ class Ferrari extends Car{
     public $priceRange = ['min'=>3000,'max'=>5000];
     public $vehicleHeight = 100;
     public $brakeRate = 10;
-    public $maxSpead = 300;
+    public $maxSpead = 83.33;
 
     public function __construct(){
 

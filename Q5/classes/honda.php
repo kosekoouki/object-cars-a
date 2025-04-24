@@ -5,7 +5,7 @@ class Honda extends Car{
     public $name = "honda";
     public $priceRange = ['min'=>500,'max'=>600];
     public $brakeRate = 10;
-    public $maxSpead = 200;
+    public $maxSpead = 69.44;
 
     public function __construct(){
 
