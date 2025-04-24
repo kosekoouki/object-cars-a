@@ -23,27 +23,27 @@ require_once('../controller.php')?>
     </tr>
     <tr>
       <td>Honda</td>
-      <td> <?= $_SESSION['honda']['speed']?></td>
-      <td><?= $_SESSION['honda']['distance']?></td>
-      <td><?= $_SESSION['honda']['accident_count']?></td>
+      <td> <?= round($_SESSION['honda']['speed'])*3.6?></td>
+      <td><?= round($_SESSION['honda']['distance'])?></td>
+      <td><?= round($_SESSION['honda']['accident_count'])?></td>
     </tr>
     <tr>
       <td>Nissan</td>
-      <td> <?= $_SESSION['nissan']['speed']?></td>
-      <td><?= $_SESSION['nissan']['distance']?></td>
-      <td><?= $_SESSION['nissan']['accident_count']?></td>
+      <td> <?= round($_SESSION['nissan']['speed']*3.6)?></td>
+      <td><?= round($_SESSION['nissan']['distance'])?></td>
+      <td><?= round($_SESSION['nissan']['accident_count'])?></td>
     </tr>
     <tr>
       <td>Ferrari</td>
-      <td> <?= $_SESSION['ferrari']['speed']?></td>
-      <td><?= $_SESSION['ferrari']['distance']?></td>
-      <td><?= $_SESSION['ferrari']['accident_count']?></td>
+      <td> <?= round($_SESSION['ferrari']['speed']*3.6)?></td>
+      <td><?= round($_SESSION['ferrari']['distance'])?></td>
+      <td><?= round($_SESSION['ferrari']['accident_count'])?></td>
     </tr>
     <tr>
       <td>Toyota</td>
-      <td> <?= $_SESSION['toyota']['speed']?></td>
-      <td><?= $_SESSION['toyota']['distance']?></td>
-      <td><?= $_SESSION['toyota']['accident_count']?></td>
+      <td> <?= round($_SESSION['toyota']['speed']*3.6)?></td>
+      <td><?= round($_SESSION['toyota']['distance'])?></td>
+      <td><?= round($_SESSION['toyota']['accident_count'])?></td>
     </tr>
     </table>
     
