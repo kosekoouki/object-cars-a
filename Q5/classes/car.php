@@ -3,8 +3,6 @@
 class Car{
     public $name;
     public $priceRange;
-    public $acceleration;
-    public $deceleration;
     public $brakeRate;
     public $maxSpead;
 

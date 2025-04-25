@@ -35,7 +35,7 @@ if(isset($_POST["first"])){
     exit;
 }
 
-//車種選択処理
+//車種の選択処理
 if(isset($_POST['setting'])){
     if(isset($_POST['car_1']) && isset($_POST['car_2'])){
         if($_SESSION['game']['money_1'] >= $_SESSION[$_POST['car_1']]["price"] && $_SESSION['game']['money_2'] >= $_SESSION[$_POST['car_2']]["price"]){
