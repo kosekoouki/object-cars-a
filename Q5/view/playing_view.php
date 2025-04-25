@@ -50,8 +50,8 @@ require_once('../controller.php')?>
 
         .car {
             position: absolute;
-            top: 10px;
-            width: 10px;
+            bottom :1px;
+            font-size: 30px;
             text-align: center;
             font-weight: bold;
             transform: scaleX(-1);
@@ -112,6 +112,10 @@ require_once('../controller.php')?>
             margin-right: 20px;
             margin-left: 20px;  
         }
+        
+        .text{
+            font-size:20px;
+        }
     </style>
 </head>   
 <body>
@@ -147,22 +151,22 @@ require_once('../controller.php')?>
 
 
     <div class="result-summary">
-        <p class="car-title">🚗選んだ車種 <span class="player">プレイヤー１：<?= $_SESSION['game']['car_1']?></span><span>プレイヤー２：<?= $_SESSION['game']['car_2']?></span> <br>
+        <p class="text">🚗選んだ車種 <span class="player">プレイヤー１：<?= $_SESSION['game']['car_1']?></span><span>プレイヤー２：<?= $_SESSION['game']['car_2']?></span> <br>
             <span style="background-color: red; color: white;"><?= $message ?></span><br>
         </p>
 
-        <div class="ranking">
-            <p class="rank-title"><strong>🏁現在の順位：</strong>
-            <span class="ranking">
-                1位<span id="one"></span>
-                2位<span id="two"></span>
-                3位<span id="three"></span>
-                4位<span id="four"></span>
+        <div class="text">
+            <strong>🏁現在の順位：</strong>
+            <span>
+                1位<span id="one"><?= $_SESSION['ranking'][0]?></span>
+                2位<span id="two"><?= $_SESSION['ranking'][1]?></span>
+                3位<span id="three"><?= $_SESSION['ranking'][2]?></span>
+                4位<span id="four"><?= $_SESSION['ranking'][3]?></span>
             </span>
             <br>
         </div> 
 
-        <p class="time">🕓タイム：<span id="time"><?= $_SESSION['game']['time'] ?>秒</span></p>
+        <p class="text">🕓タイム：<span id="time"><?= $_SESSION['game']['time'] ?>秒</span></p>
     </div>
     <table>
         <tr>
@@ -173,27 +177,27 @@ require_once('../controller.php')?>
         </tr>
         <tr>
             <td>Honda</td>
-            <td id="honda_speed"> <?= round($_SESSION['honda']['speed'])*3.6?></td>
-            <td id="honda_distance"><?= round($_SESSION['honda']['distance'])?></td>
-            <td id="honda_accident"><?= round($_SESSION['honda']['accident_count'])?></td>
+            <td id="honda_speed"> <?= round($_SESSION['honda']['speed']*3.6)."km/h"?></td>
+            <td id="honda_distance"><?= round($_SESSION['honda']['distance'])."m"?></td>
+            <td id="honda_accident"><?= round($_SESSION['honda']['accident_count'])."回"?></td>
         </tr>
         <tr>
             <td>Nissan</td>
-            <td id="nissan_speed"> <?= round($_SESSION['nissan']['speed']*3.6)?></td>
-            <td id="nissan_distance"><?= round($_SESSION['nissan']['distance'])?></td>
-            <td id="nissan_accident"><?= round($_SESSION['nissan']['accident_count'])?></td>
+            <td id="nissan_speed"> <?= round($_SESSION['nissan']['speed']*3.6)."km/h"?></td>
+            <td id="nissan_distance"><?= round($_SESSION['nissan']['distance'])."m"?></td>
+            <td id="nissan_accident"><?= round($_SESSION['nissan']['accident_count'])."回"?></td>
         </tr>
         <tr>
             <td>Ferrari</td>
-            <td id="ferrari_speed"> <?= round($_SESSION['ferrari']['speed']*3.6)?></td>
-            <td id="ferrari_distance"><?= round($_SESSION['ferrari']['distance'])?></td>
-            <td id="ferrari_accident"><?= round($_SESSION['ferrari']['accident_count'])?></td>
+            <td id="ferrari_speed"> <?= round($_SESSION['ferrari']['speed']*3.6)."km/h"?></td>
+            <td id="ferrari_distance"><?= round($_SESSION['ferrari']['distance'])."m"?></td>
+            <td id="ferrari_accident"><?= round($_SESSION['ferrari']['accident_count'])."回"?></td>
         </tr>
         <tr>
             <td>Toyota</td>
-            <td id="toyota_speed"><?= round($_SESSION['toyota']['speed']*3.6)?></td>
-            <td id="toyota_distance"><?= round($_SESSION['toyota']['distance'])?></td>
-            <td id="toyota_accident"><?= round($_SESSION['toyota']['accident_count'])?></td>
+            <td id="toyota_speed"><?= round($_SESSION['toyota']['speed']*3.6)."km/h"?></td>
+            <td id="toyota_distance"><?= round($_SESSION['toyota']['distance'])."m"?></td>
+            <td id="toyota_accident"><?= round($_SESSION['toyota']['accident_count'])."回"?></td>
         </tr>
     </table>
 
