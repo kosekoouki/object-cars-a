@@ -14,7 +14,7 @@ $toyota = new Toyota();
 
 //ゲーム設定
 $maxround = 5;
-$goal = 10;
+$goal = 1000;
 $_SESSION['goal'] = $goal;
 $firstMoney = 3000;
 $addMoney = 1000;
