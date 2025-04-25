@@ -5,6 +5,7 @@ function setting(){
 }
 
 function sessionReset(){
+    $_SESSION['message']="";
     $_SESSION['game']['check_point'] = 0;
     $_SESSION['game']['time'] = 0;
     $_SESSION['finish'] = false;

@@ -11,7 +11,7 @@ $ferrari = new Ferrari();
 $toyota = new Toyota();
 $maxround = 5;
 $checkPoint = 1000;
-$goal = 100;
+$goal = 1000;
 $_SESSION['goal'] = $goal;
 $firstMoney = 3000;
 $addMoney = 1000;
@@ -98,6 +98,7 @@ if(isset($_POST['next'])){
 
 //終了処理
 if(isset($_POST['finish'])){
+    session_destroy();
     header("Location: view/start_view.php");
     exit;
 }

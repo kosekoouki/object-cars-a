@@ -70,7 +70,7 @@ require_once('../controller.php')?>
         font-size: 14px; /* 小さめの文字 */
         background-color: #f9f9f9; /* 控えめな背景色 */
       }
-  　　　th, td {
+    th, td {
         border: 1px solid #ccc;
         padding: 6px 10px;
         text-align: center;
@@ -208,25 +208,25 @@ async function updateRace(){
 
         document.getElementById("time").textContent = data.time + "秒";
 
-        document.getElementById("honda").style.left = data.positions.honda.position + "%";
-        document.getElementById("nissan").style.left = data.positions.nissan.position + "%";
-        document.getElementById("ferrari").style.left = data.positions.ferrari.position + "%";
-        document.getElementById("toyota").style.left = data.positions.toyota.position + "%";
+        document.getElementById("honda").style.left = data.car.honda.position + "%";
+        document.getElementById("nissan").style.left = data.car.nissan.position + "%";
+        document.getElementById("ferrari").style.left = data.car.ferrari.position + "%";
+        document.getElementById("toyota").style.left = data.car.toyota.position + "%";
 
-        document.getElementById("honda_speed").textContent = Math.round(data.positions.honda.speed3.6) + "km/h";
-        document.getElementById("nissan_speed").textContent = Math.round(data.positions.nissan.speed3.6) + "km/h";
-        document.getElementById("ferrari_speed").textContent = Math.round(data.positions.ferrari.speed3.6) + "km/h";
-        document.getElementById("toyota_speed").textContent = Math.round(data.positions.toyota.speed3.6) + "km/h";
+        document.getElementById("honda_speed").textContent = Math.round(data.car.honda.speed*3.6) + "km/h";
+        document.getElementById("nissan_speed").textContent = Math.round(data.car.nissan.speed*3.6) + "km/h";
+        document.getElementById("ferrari_speed").textContent = Math.round(data.car.ferrari.speed*3.6) + "km/h";
+        document.getElementById("toyota_speed").textContent = Math.round(data.car.toyota.speed*3.6) + "km/h";
 
-        document.getElementById("honda_distance").textContent = Math.round(data.positions.honda.distance) + "m";
-        document.getElementById("nissan_distance").textContent = Math.round(data.positions.nissan.distance) + "m";
-        document.getElementById("ferrari_distance").textContent = Math.round(data.positions.ferrari.distance) + "m";
-        document.getElementById("toyota_distance").textContent = Math.round(data.positions.toyota.distance) + "m";
+        document.getElementById("honda_distance").textContent = Math.round(data.car.honda.distance) + "m";
+        document.getElementById("nissan_distance").textContent = Math.round(data.car.nissan.distance) + "m";
+        document.getElementById("ferrari_distance").textContent = Math.round(data.car.ferrari.distance) + "m";
+        document.getElementById("toyota_distance").textContent = Math.round(data.car.toyota.distance) + "m";
 
-        document.getElementById("honda_accident").textContent = data.positions.honda.accident_count + "回";
-        document.getElementById("nissan_accident").textContent = data.positions.nissan.accident_count + "回";
-        document.getElementById("ferrari_accident").textContent = data.positions.ferrari.accident_count + "回";
-        document.getElementById("toyota_accident").textContent = data.positions.toyota.accident_count + "回";
+        document.getElementById("honda_accident").textContent = data.car.honda.accident_count + "回";
+        document.getElementById("nissan_accident").textContent = data.car.nissan.accident_count + "回";
+        document.getElementById("ferrari_accident").textContent = data.car.ferrari.accident_count + "回";
+        document.getElementById("toyota_accident").textContent = data.car.toyota.accident_count + "回";
 
         document.getElementById("one").textContent = data.ranking[0] ;
         document.getElementById("two").textContent = data.ranking[1] ;
@@ -241,7 +241,7 @@ async function updateRace(){
 
     document.getElementById("start").addEventListener("click",() => {
         if(!timer){
-            timer =  setInterval(updateRace,1000);
+            timer =  setInterval(updateRace,100) ;
         }
     })
 </script>
