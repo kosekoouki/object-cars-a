@@ -14,7 +14,7 @@ $toyota = new Toyota();
 
 //ゲーム設定
 $maxround = 5;
-$goal = 1000;
+$goal = 10;
 $_SESSION['goal'] = $goal;
 $firstMoney = 3000;
 $addMoney = 1000;
@@ -24,7 +24,8 @@ $addMoney = 1000;
 if(isset($_POST["first"])){
     setting();
     //sessionの初期設定
-    $_SESSION['game']['money']=$firstMoney;
+    $_SESSION['game']['money_1']=$firstMoney;
+    $_SESSION['game']['money_2']=$firstMoney;
     //車種ごとの値段生成
     $honda->priceGen();
     $nissan->priceGen();
@@ -36,12 +37,14 @@ if(isset($_POST["first"])){
 
 //車種選択処理
 if(isset($_POST['setting'])){
-    if(isset($_POST['car'])){
-        if($_SESSION['game']['money'] >= $_SESSION[$_POST['car']]["price"]){
+    if(isset($_POST['car_1']) && isset($_POST['car_2'])){
+        if($_SESSION['game']['money_1'] >= $_SESSION[$_POST['car_1']]["price"] && $_SESSION['game']['money_2'] >= $_SESSION[$_POST['car_2']]["price"]){
             //選択した車種をセッションに保持
-            $_SESSION['game']['car'] = $_POST['car'];
+            $_SESSION['game']['car_1'] = $_POST['car_1'];
+            $_SESSION['game']['car_2'] = $_POST['car_2'];
             //使用した金額を所持金から引く
-            $_SESSION['game']['money'] -= $_SESSION[$_POST['car']]["price"];
+            $_SESSION['game']['money_1'] -= $_SESSION[$_POST['car_1']]["price"];
+            $_SESSION['game']['money_2'] -= $_SESSION[$_POST['car_2']]["price"];
             header("Location: view/playing_view.php");
             exit;
         }
@@ -63,16 +66,21 @@ if(isset($_POST['setting'])){
 if(isset($_POST['next'])){
     if($_SESSION['finish']){
         //勝利数の加算
-        if ($_SESSION['ranking'][0] == $_SESSION['game']['car']) {
-            $_SESSION['game']['win_count']++;
+        if ($_SESSION['ranking'][0] == $_SESSION['game']['car_1']) {
+            $_SESSION['game']['win_count_1']++;
+        }
+        if ($_SESSION['ranking'][0] == $_SESSION['game']['car_2']) {
+            $_SESSION['game']['win_count_2']++;
         }
         //車種データのセッションリセット       
         sessionReset();
-        if($_SESSION['game']['round'] < $maxround && $_SESSION['game']['win_count'] < 2){
+        if($_SESSION['game']['round'] < $maxround && $_SESSION['game']['win_count_1'] < 2 && $_SESSION['game']['win_count_2'] < 2){
             //ラウンドの加算
             $_SESSION['game']['round']++;
             //所持金の加算
-            $_SESSION['game']['money'] += $addMoney;
+            $_SESSION['game']['money_1'] += $addMoney;
+            $_SESSION['game']['money_2'] += $addMoney;
+
 
             //車種ごとの値段の再設定
             $honda->priceGen();

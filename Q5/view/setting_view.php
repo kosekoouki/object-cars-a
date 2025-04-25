@@ -80,14 +80,29 @@
             object-position: center center;
             margin-bottom: 5px;
         }
+
+        .player{
+            margin:0px
+        }
+
+        .players{
+            margin-left:20px;
+            margin-right:20px;
+        }
     </style>        
 </head>
 <body>
     <h1>車種選択画面</h1>
     <div class="game-info">
         <p><strong>ラウンド数：</strong><span class="highlight"><?= $_SESSION['game']['round'] ?></span> 回</p>
-        <p><strong>勝利数：</strong><span class="highlight"><?= $_SESSION['game']['win_count'] ?></span> 回</p>
-        <p><strong>所持金：</strong><span class="highlight"><?= $_SESSION['game']['money'] ?></span> 万円</p>
+        <p>
+            <strong>勝利数</strong><span class="players">プレイヤー１：<span class="highlight"><?= $_SESSION['game']['win_count_1'] ?></span> 回</span>
+            プレイヤー２：<span class="highlight"><?= $_SESSION['game']['win_count_2'] ?></span> 回
+        </p>
+        <p>
+            <strong>所持金</strong><span class="players">プレイヤー１：<span class="highlight"><?= $_SESSION['game']['money_1'] ?></span> 万円</span>
+            プレイヤー２：</strong><span class="highlight"><?= $_SESSION['game']['money_2'] ?></span> 万円
+        </p>
         
         <?php if (!empty($message)): ?>
             <p class="error"><?= htmlspecialchars($message, ENT_QUOTES, 'UTF-8') ?></p>
@@ -99,25 +114,29 @@
         <div class="car-container">
             <label class="car-card">
                 <img src="https://cdn.pixabay.com/photo/2016/11/23/08/13/honda-1852200_1280.jpg" alt="Honda" class="car-img">
-                Honda：<?= $_SESSION['honda']['price']?> 万円
-                <input type="radio" name="car" value="honda"> 
+                Honda：<?= $_SESSION['honda']['price']?> 万円<br>
+                <label class="player">プレイヤー１<input type="radio" name="car_1" value="honda"></label> 
+                <label class="player">プレイヤー２<input type="radio" name="car_2" value="honda"></label>
             </label>
             <label class="car-card">
                 <img src="https://cdn.pixabay.com/photo/2022/07/15/19/00/auto-7323835_1280.png" alt="nissan" class="car-img">
-                Nissan：<?= $_SESSION['nissan']['price']?> 万円
-                <input type="radio" name="car" value="nissan"> 
+                Nissan：<?= $_SESSION['nissan']['price']?> 万円<br>
+                <label class="player">プレイヤー１<input type="radio" name="car_1" value="nissan"></label> 
+                <label class="player">プレイヤー２<input type="radio" name="car_2" value="nissan"></label>
             </label>
             
             <label class="car-card">
                 <img src="https://cdn.pixabay.com/photo/2017/02/01/11/20/drive-2029742_1280.png" alt="ferrari" class="car-img">
-                Ferrari：<?= $_SESSION['ferrari']['price']?> 万円
-                <input type="radio" name="car" value="ferrari"> 
+                Ferrari：<?= $_SESSION['ferrari']['price']?> 万円<br>
+                <label class="player">プレイヤー１<input type="radio" name="car_1" value="ferrari"></label> 
+                <label class="player">プレイヤー２<input type="radio" name="car_2" value="ferrari"></label> 
             </label>
 
             <label class="car-card">
                 <img src="https://cdn.pixabay.com/photo/2017/06/15/04/13/car-2404064_1280.png" alt="toyota" class="car-img">
-                Toyota：<?= $_SESSION['toyota']['price']?> 万円
-                <input type="radio" name="car" value="toyota"> 
+                Toyota：<?= $_SESSION['toyota']['price']?> 万円<br>
+                <label class="player">プレイヤー１<input type="radio" name="car_1" value="toyota"></label> 
+                <label class="player">プレイヤー２<input type="radio" name="car_2" value="toyota"></label> 
             </label>
 
         </div>

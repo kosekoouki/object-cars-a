@@ -106,6 +106,11 @@ require_once('../controller.php')?>
             transition: all 0.3s ease;   
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         } 
+
+        .player{
+            margin-right: 20px;
+            margin-left: 20px;  
+        }
     </style>
 </head>   
 <body>
@@ -141,7 +146,7 @@ require_once('../controller.php')?>
 
 
     <div class="result-summary">
-        <p class="car-title">🚗選んだ車種： <?= $_SESSION['game']['car']?> <br>
+        <p class="car-title">🚗選んだ車種 <span class="player">プレイヤー１：<?= $_SESSION['game']['car_1']?></span><span>プレイヤー２：<?= $_SESSION['game']['car_2']?></span> <br>
             <span style="background-color: red; color: white;"><?= $message ?></span><br>
         </p>
 

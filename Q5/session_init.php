@@ -1,12 +1,11 @@
 <?php
 function setting(){
-    $_SESSION['game']=['car'=>"",'time'=>0,'round'=>1,'win_count'=>0,'money'=>0];
+    $_SESSION['game']=['car_1'=>"",'car_2'=>"",'time'=>0,'round'=>1,'win_count_1'=>0,'win_count_2'=>0,'money_1'=>0,'money_2'=>0];
     sessionReset();
 }
 
 function sessionReset(){
     $_SESSION['message']="";
-    $_SESSION['game']['check_point'] = 0;
     $_SESSION['game']['time'] = 0;
     $_SESSION['finish'] = false;
     $_SESSION['ranking']=['','','',''];
