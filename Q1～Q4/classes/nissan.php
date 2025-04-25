@@ -6,11 +6,7 @@ class Nissan extends Car {
     public $acceleration = 3.0;  
     public $deceleration = 6.0; 
     public $defectjudg = true;
-
-    public function __construct($capacity = 4) {
-        parent::__construct($capacity); // ← 親にデフォルト値を渡す
-    }
-
+    public $capacity = 4;
     public function defect() {
         $this->acceleration *= 0.6;
     }
