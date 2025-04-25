@@ -1,6 +1,5 @@
 <?php
 require_once("controller.php");
-$_SESSION['message']="";
 if($_SESSION['finish']){  
     exit;
 }
@@ -9,6 +8,7 @@ else{
     require_once("classes/nissan.php");
     require_once("classes/ferrari.php");
     require_once("classes/toyota.php");
+
     //ゲーム処理
     $honda = new Honda();
     $nissan = new Nissan();
@@ -24,6 +24,7 @@ else{
     $check4 = $toyota->calculateDistance();
 
     $_SESSION['game']['time'] += 0.1;
+
     //ランキング決め     
     $distances = [
         'honda'   => $_SESSION['honda']['distance'],
@@ -33,12 +34,16 @@ else{
     ];
     arsort($distances);
     $_SESSION['ranking'] = array_keys($distances);
+
+    //レース終了判定処理
     if($check1 || $check2 || $check3 || $check4){
         $_SESSION['finish']=true;
     }
     else{
         $_SESSION['finish']=false;
     }
+
+    //jsonの形に変更
     header("Content-Type: application/json");
     echo json_encode([
         'finish' => $_SESSION['finish'],

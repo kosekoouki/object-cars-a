@@ -24,6 +24,7 @@
             margin-bottom: 20px;
             border-radius: 10px;
         }
+        
         h1 {
             color:rgb(67, 4, 32);
             text-align: center;

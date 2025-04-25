@@ -1,4 +1,5 @@
 <?php
+//ニッサン
 require_once("car.php");
 class Nissan extends Car {
     public $name = "nissan";
@@ -7,9 +8,8 @@ class Nissan extends Car {
     public $maxSpead = 55.56;
 
     public function __construct(){
-
-    $_SESSION[$this->name]['acceleration'] = 3; 
-    $_SESSION[$this->name]['deceleration'] = 6; 
+        $_SESSION[$this->name]['acceleration'] = 3; 
+        $_SESSION[$this->name]['deceleration'] = 6; 
     }
 }    
 ?>

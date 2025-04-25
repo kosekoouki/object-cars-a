@@ -1,6 +1,6 @@
 <?php
 function setting(){
-    $_SESSION['game']=['car'=>"",'time'=>0,'round'=>1,'win_count'=>0,'money'=>0,'finish'=>false,'check_point'=>0];
+    $_SESSION['game']=['car'=>"",'time'=>0,'round'=>1,'win_count'=>0,'money'=>0];
     sessionReset();
 }
 

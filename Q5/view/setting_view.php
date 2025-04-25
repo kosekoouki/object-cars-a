@@ -1,6 +1,5 @@
-<?PHP
-require_once("../controller.php")
-?>
+<?PHP require_once("../controller.php") ?>
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -14,6 +13,7 @@ require_once("../controller.php")
             padding: 20px;
             background-color: #f4f4f9;
         }
+
         h1{
             text-align: center;
         }
@@ -23,7 +23,6 @@ require_once("../controller.php")
             font-weight: bold;
             margin-bottom: 10px;
         }
-
 
         .game-info{
             text-align: center;
@@ -35,7 +34,6 @@ require_once("../controller.php")
             color: #ff1414; 
             font-weight: bold;
         }
-
 
         label{
             margin: 10px;
@@ -74,7 +72,6 @@ require_once("../controller.php")
             box-sizing: border-box;
             transition: transform 0.2s;
         }
-
         
         .car-img {
             width: 100%;
@@ -83,55 +80,49 @@ require_once("../controller.php")
             object-position: center center;
             margin-bottom: 5px;
         }
-        </style>
-        
+    </style>        
 </head>
-
 <body>
-<h1>車種選択画面</h1>
+    <h1>車種選択画面</h1>
+    <div class="game-info">
+        <p><strong>ラウンド数：</strong><span class="highlight"><?= $_SESSION['game']['round'] ?></span> 回</p>
+        <p><strong>勝利数：</strong><span class="highlight"><?= $_SESSION['game']['win_count'] ?></span> 回</p>
+        <p><strong>所持金：</strong><span class="highlight"><?= $_SESSION['game']['money'] ?></span> 万円</p>
+        
+        <?php if (!empty($message)): ?>
+            <p class="error"><?= htmlspecialchars($message, ENT_QUOTES, 'UTF-8') ?></p>
+        <?php endif; ?>
 
-<div class="game-info">
-    <p><strong>ラウンド数：</strong><span class="highlight"><?= $_SESSION['game']['round'] ?></span> 回</p>
-    <p><strong>勝利数：</strong><span class="highlight"><?= $_SESSION['game']['win_count'] ?></span> 回</p>
-    <p><strong>所持金：</strong><span class="highlight"><?= $_SESSION['game']['money'] ?></span> 万円</p>
-    
-<?php if (!empty($message)): ?>
-    <p class="error"><?= htmlspecialchars($message, ENT_QUOTES, 'UTF-8') ?></p>
-<?php endif; ?>
-
-
-</div>
-</table>
-    <form action="../controller.php" method="post">
-        <div class="car-container">
-
-    <label class="car-card">
-        <img src="https://cdn.pixabay.com/photo/2016/11/23/08/13/honda-1852200_1280.jpg" alt="Honda" class="car-img">
-        Honda：<?= $_SESSION['honda']['price']?> 万円
-        <input type="radio" name="car" value="honda"> 
-    </label>
-
-    <label class="car-card">
-    <img src="https://cdn.pixabay.com/photo/2022/07/15/19/00/auto-7323835_1280.png" alt="nissan" class="car-img">
-        Nissan：<?= $_SESSION['nissan']['price']?> 万円
-        <input type="radio" name="car" value="nissan"> 
-    </label>
-    
-    <label class="car-card">
-    <img src="https://cdn.pixabay.com/photo/2017/02/01/11/20/drive-2029742_1280.png" alt="ferrari" class="car-img">
-        Ferrari：<?= $_SESSION['ferrari']['price']?> 万円
-        <input type="radio" name="car" value="ferrari"> 
-    </label>
-
-    <label class="car-card">
-    <img src="https://cdn.pixabay.com/photo/2017/06/15/04/13/car-2404064_1280.png" alt="toyota" class="car-img">
-         Toyota：<?= $_SESSION['toyota']['price']?> 万円
-        <input type="radio" name="car" value="toyota"> 
-    </label>
 
     </div>
-    <br>
-    <button type="submit" name="setting">スタート</button>
+    <form action="../controller.php" method="post">
+        <div class="car-container">
+            <label class="car-card">
+                <img src="https://cdn.pixabay.com/photo/2016/11/23/08/13/honda-1852200_1280.jpg" alt="Honda" class="car-img">
+                Honda：<?= $_SESSION['honda']['price']?> 万円
+                <input type="radio" name="car" value="honda"> 
+            </label>
+            <label class="car-card">
+                <img src="https://cdn.pixabay.com/photo/2022/07/15/19/00/auto-7323835_1280.png" alt="nissan" class="car-img">
+                Nissan：<?= $_SESSION['nissan']['price']?> 万円
+                <input type="radio" name="car" value="nissan"> 
+            </label>
+            
+            <label class="car-card">
+                <img src="https://cdn.pixabay.com/photo/2017/02/01/11/20/drive-2029742_1280.png" alt="ferrari" class="car-img">
+                Ferrari：<?= $_SESSION['ferrari']['price']?> 万円
+                <input type="radio" name="car" value="ferrari"> 
+            </label>
+
+            <label class="car-card">
+                <img src="https://cdn.pixabay.com/photo/2017/06/15/04/13/car-2404064_1280.png" alt="toyota" class="car-img">
+                Toyota：<?= $_SESSION['toyota']['price']?> 万円
+                <input type="radio" name="car" value="toyota"> 
+            </label>
+
+        </div>
+        <br>
+        <button type="submit" name="setting">スタート</button>
     </form>  
 </body>
 </html>

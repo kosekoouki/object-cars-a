@@ -1,4 +1,5 @@
 <?php
+//トヨタ
 require_once("car.php");
 class Toyota extends Car {
     public $name = "toyota";
@@ -10,7 +11,7 @@ class Toyota extends Car {
 
     public function __construct(){
         $price = $_SESSION['toyota']['price'];
-
+        //価格による性能指定処理
         if($price >=200 && $price <=400){
             $_SESSION[$this->name]['acceleration'] = $this->acceleration[0]; 
             $_SESSION[$this->name]['deceleration'] = $this->deceleration[0];

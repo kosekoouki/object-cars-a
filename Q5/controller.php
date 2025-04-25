@@ -1,39 +1,40 @@
 <?php
 session_start();
+
 require_once("session_init.php");
 require_once("classes/honda.php");
 require_once("classes/nissan.php");
 require_once("classes/ferrari.php");
 require_once("classes/toyota.php");
+
 $honda = new Honda();
 $nissan = new Nissan();
 $ferrari = new Ferrari();
 $toyota = new Toyota();
+
+//ゲーム設定
 $maxround = 5;
-$checkPoint = 1000;
 $goal = 1000;
 $_SESSION['goal'] = $goal;
 $firstMoney = 3000;
 $addMoney = 1000;
 
 
-//設定処理
-if(isset($_POST["first"])  ){
+//初期設定処理
+if(isset($_POST["first"])){
     setting();
+    //sessionの初期設定
     $_SESSION['game']['money']=$firstMoney;
-    // Honda
+    //車種ごとの値段生成
     $honda->priceGen();
-    // Nissan
     $nissan->priceGen();
-    // Ferrari
     $ferrari->priceGen();
-    // Toyota
     $toyota->priceGen();
     header("Location: view/setting_view.php");
     exit;
 }
 
-//選択処理
+//車種選択処理
 if(isset($_POST['setting'])){
     if(isset($_POST['car'])){
         if($_SESSION['game']['money'] >= $_SESSION[$_POST['car']]["price"]){
@@ -41,8 +42,6 @@ if(isset($_POST['setting'])){
             $_SESSION['game']['car'] = $_POST['car'];
             //使用した金額を所持金から引く
             $_SESSION['game']['money'] -= $_SESSION[$_POST['car']]["price"];
-            //チェックポイントの設定
-             $checkPoint;
             header("Location: view/playing_view.php");
             exit;
         }
@@ -66,20 +65,19 @@ if(isset($_POST['next'])){
         //勝利数の加算
         if ($_SESSION['ranking'][0] == $_SESSION['game']['car']) {
             $_SESSION['game']['win_count']++;
-        }       
+        }
+        //車種データのセッションリセット       
         sessionReset();
         if($_SESSION['game']['round'] < $maxround && $_SESSION['game']['win_count'] < 2){
             //ラウンドの加算
             $_SESSION['game']['round']++;
             //所持金の加算
             $_SESSION['game']['money'] += $addMoney;
-            // Honda
+
+            //車種ごとの値段の再設定
             $honda->priceGen();
-            // Nissan
             $nissan->priceGen();
-            // Ferrari
             $ferrari->priceGen();
-            // Toyota
             $toyota->priceGen();
             header("Location: view/setting_view.php");
             exit;
@@ -98,6 +96,7 @@ if(isset($_POST['next'])){
 
 //終了処理
 if(isset($_POST['finish'])){
+    //セッションデータの削除
     session_destroy();
     header("Location: view/start_view.php");
     exit;
@@ -124,5 +123,6 @@ switch ($_SESSION['message']) {
         $message = "ラウンドが終わってません";
         break;
 }
+//メッセージの初期化
 $_SESSION['message']="";
 ?>
