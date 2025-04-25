@@ -54,6 +54,7 @@ require_once('../controller.php')?>
             width: 10px;
             text-align: center;
             font-weight: bold;
+            transform: scaleX(-1);
         }
 
         body {
@@ -121,25 +122,25 @@ require_once('../controller.php')?>
         <div class="container">
             <div>Honda</div>
             <div class="race-map">
-                <div class="car" id="honda">🚙</div>
+                <div class="car" id="honda" style = "left:<?= $_SESSION['honda']['position']?>%;">🚙</div>
             </div>
         </div>
         <div class="container">
             <div>Nissan</div>
             <div class="race-map">
-                <div class="car" id="nissan">🛻</div>
+                <div class="car" id="nissan" style = "left:<?= $_SESSION['nissan']['position']?>%;">🛻</div>
             </div>
         </div>
         <div class="container">
             <div>Ferrari</div>
             <div class="race-map">
-                <div class="car" id="ferrari">🏎️</div>
+                <div class="car" id="ferrari" style = "left:<?= $_SESSION['ferrari']['position']?>%;">🏎️</div>
             </div>
         </div>
         <div class="container">
             <div>Toyota</div>
             <div class="race-map">
-                <div class="car" id="toyota">🚗</div>
+                <div class="car" id="toyota" style = "left:<?= $_SESSION['toyota']['position']?>%;">🚗</div>
             </div>
         </div>
     </div>
